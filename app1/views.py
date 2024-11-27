@@ -3,8 +3,21 @@ from django.http import HttpResponse
 
 
 # Create your views here.
-def home(request):
-    return HttpResponse("hello world")
+def home(request, user):
+
+    home_page_html = """
+        <!DOCTYPE html>
+        <html>
+        <body>
+        
+        <h1>{{user}}</h1>
+        <p>my first paragraph.</p>
+        </body>
+        </html>
+    """
+    home_page_html = home_page_html.replace("{{user}}", user)
+
+    return HttpResponse(home_page_html)
 
 
 def welcome_page(requst, user):
